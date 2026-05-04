@@ -306,7 +306,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="content-section about-skills-section">
+      <section className="content-section">
         <div className="container skills-section">
           <div className="skill-group">
             <h2>Core Competencies</h2>
@@ -382,6 +382,9 @@ function ProjectsPage({ onNavigate }) {
 }
 
 function ContactPage() {
+  const resumeUrl =
+    'https://docs.google.com/document/d/17j3yT76uYL-dSwMySgL1AurHxTWXOMQ8yNh3OxO6hZM/edit?usp=sharing'
+
   const contactActions = [
     {
       title: 'LinkedIn',
@@ -399,18 +402,18 @@ function ContactPage() {
     },
     {
       title: 'Resume',
-      label: 'Resume Upon Request',
-      href: 'mailto:liaoyueyi@gmail.com?subject=Resume%20Request&body=Hi%20Yueyi%2C%0A%0AI%20would%20like%20to%20request%20a%20copy%20of%20your%20resume.%0A%0AThank%20you.',
+      label: 'View / Download Resume',
+      href: resumeUrl,
       icon: 'resume',
-      isExternal: false,
+      isExternal: true,
     },
   ]
 
   return (
-    <section className="min-h-[calc(100vh-76px)] bg-[#e8f0df] px-4 py-12 text-[#232018] md:py-20">
+    <section className="min-h-[calc(100vh-76px)] bg-[#dfeaf8] px-4 py-12 text-[#232018] md:py-20">
       <div className="mx-auto w-full max-w-6xl">
-        <div className="grid items-center gap-8 rounded-[2rem] border border-white/70 bg-white/45 p-6 shadow-[0_24px_70px_rgba(78,92,59,0.12)] backdrop-blur md:grid-cols-[220px_1fr] md:p-10">
-          <div className="mx-auto h-40 w-40 overflow-hidden rounded-full border-4 border-white shadow-[0_18px_42px_rgba(78,92,59,0.18)] md:h-44 md:w-44">
+        <div className="grid items-center gap-8 rounded-[2rem] border border-white/70 bg-white/45 p-6 shadow-[0_24px_70px_rgba(63,82,104,0.12)] backdrop-blur md:grid-cols-[220px_1fr] md:p-10">
+          <div className="mx-auto h-40 w-40 overflow-hidden rounded-full border-4 border-white shadow-[0_18px_42px_rgba(63,82,104,0.18)] md:h-44 md:w-44">
             <img
               src={profileImg}
               alt="Yueyi Liao"
@@ -419,20 +422,18 @@ function ContactPage() {
           </div>
 
           <div className="text-center md:text-left">
-            <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-[#6e7d55]">
+            <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-[#5e789c]">
               Contact
             </p>
-            <div className="flex flex-col gap-5">
-              <h1 className="text-4xl font-semibold tracking-tight text-[#26301f] md:text-6xl">
-                Let’s Connect!
-              </h1>
-              <p className="max-w-2xl text-lg leading-8 text-[#5c6651]">
-                I’m always open to internship and career opportunities, future
-                iterations or collaborations inspired by my projects, and general
-                conversations with people interested in product, UX, and
-                human-centered problem solving.
-              </p>
-            </div>
+            <h1 className="text-4xl font-semibold tracking-tight text-[#1f2430] md:text-6xl">
+              Let’s Connect!
+            </h1>
+            <p className="mt-[60px] max-w-2xl text-lg leading-8 text-[#526174]">
+              I’m always open to internship and career opportunities, future
+              iterations or collaborations inspired by my projects, and general
+              conversations with people interested in product, UX, and
+              human-centered problem solving.
+            </p>
           </div>
         </div>
 
@@ -452,16 +453,22 @@ function ContactActionCard({ action }) {
       href={action.href}
       target={action.isExternal ? '_blank' : undefined}
       rel={action.isExternal ? 'noreferrer' : undefined}
-      className="group flex min-h-44 flex-col justify-between rounded-3xl border border-white/70 bg-white/65 p-6 shadow-[0_18px_48px_rgba(78,92,59,0.12)] transition-[transform,box-shadow,background-color] duration-150 hover:-translate-y-1 hover:bg-white/80 hover:shadow-[0_24px_60px_rgba(78,92,59,0.16)] active:translate-y-px active:shadow-[0_10px_28px_rgba(78,92,59,0.12)]"
+      className="group flex min-h-44 flex-col justify-between rounded-3xl border border-white/70 bg-white/65 p-6 shadow-[0_18px_48px_rgba(63,82,104,0.12)] transition-[transform,box-shadow,background-color] duration-150 hover:-translate-y-1 hover:bg-white/80 hover:shadow-[0_24px_60px_rgba(63,82,104,0.16)] active:translate-y-px active:shadow-[0_10px_28px_rgba(63,82,104,0.12)]"
     >
-      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#c9d8b8] text-[#26301f] transition group-hover:bg-[#b9cba4]">
+      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#b8cff0] text-[#1f2430] transition group-hover:bg-[#a8c2e8]">
         <ContactIcon type={action.icon} />
       </div>
       <div>
-        <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#6e7d55]">
+        <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#5e789c]">
           {action.title}
         </p>
-        <p className="mt-2 text-xl font-semibold text-[#26301f]">{action.label}</p>
+        <p className="mt-2 text-xl font-semibold text-[#1f2430]">{action.label}</p>
+        {action.title === 'Resume' && (
+          <p className="mt-3 text-sm leading-6 text-[#526174]">
+            Opens the current Google Doc resume in a new tab. Replace the URL
+            with <span className="font-mono">/resume.pdf</span> later for a local PDF.
+          </p>
+        )}
       </div>
     </a>
   )
@@ -470,8 +477,12 @@ function ContactActionCard({ action }) {
 function ContactIcon({ type }) {
   if (type === 'linkedin') {
     return (
-      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-8 w-8 fill-current">
-        <path d="M6.3 8.9h3.1v9.3H6.3V8.9Zm1.55-4.6c1 0 1.8.75 1.8 1.7s-.8 1.72-1.8 1.72S6.05 6.95 6.05 6s.8-1.7 1.8-1.7ZM11.1 8.9h3v1.27h.04c.42-.77 1.45-1.58 2.99-1.58 3.2 0 3.79 2.02 3.79 4.65v4.96h-3.13v-4.4c0-1.05-.02-2.4-1.53-2.4-1.54 0-1.78 1.15-1.78 2.32v4.48H11.1V8.9Z" />
+      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-8 w-8 fill-none stroke-current stroke-2">
+        <path d="M7 10v8" />
+        <path d="M7 7.2v.1" />
+        <path d="M11 18v-8" />
+        <path d="M11 13.5c0-2.1 1.2-3.5 3.1-3.5 1.8 0 2.9 1.2 2.9 3.4V18" />
+        <path d="M4.5 4.5h15v15h-15z" />
       </svg>
     )
   }
@@ -546,17 +557,8 @@ function ProjectCfcPage({ onNavigate }) {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <TactileLink
-                href="https://smart-cat-feeding.vercel.app"
-                label="View Live Demo"
-                isPrimary
-                isExternal
-              />
-              <TactileLink
-                href="https://github.com/yueyiliao/smart_cat_feeding"
-                label="View GitHub"
-                isExternal
-              />
+              <TactileLink href="#" label="View Live Demo" isPrimary />
+              <TactileLink href="#" label="View GitHub" />
             </div>
           </div>
 
@@ -821,16 +823,14 @@ function RoadmapCard({ number, title, body }) {
   )
 }
 
-function TactileLink({ href, label, isPrimary = false, isExternal = false }) {
+function TactileLink({ href, label, isPrimary = false }) {
   return (
     <a
       href={href}
-      target={isExternal ? '_blank' : undefined}
-      rel={isExternal ? 'noreferrer' : undefined}
-      className={`inline-flex rounded-full px-5 py-3 font-bold transition-[transform,box-shadow] duration-[120ms] ease-in-out hover:translate-y-1 active:translate-y-1 ${
+      className={`inline-flex rounded-full px-5 py-3 font-bold transition-[transform,box-shadow,background-color] duration-120 hover:-translate-y-0.5 active:translate-y-px ${
         isPrimary
-          ? 'bg-[#2f3926] text-white shadow-[0_5px_0_#1f2919,0_10px_18px_rgba(47,57,38,0.2)] hover:shadow-[0_1px_0_#1f2919,0_2px_8px_rgba(47,57,38,0.12)] active:shadow-[0_1px_0_#1f2919,0_2px_8px_rgba(47,57,38,0.12)]'
-          : 'border border-[#a9b28f] bg-[#fbf6ec] text-[#2f3926] shadow-[0_5px_0_#a9b28f,0_10px_18px_rgba(72,61,44,0.1)] hover:shadow-[0_1px_0_#a9b28f,0_2px_8px_rgba(72,61,44,0.08)] active:shadow-[0_1px_0_#a9b28f,0_2px_8px_rgba(72,61,44,0.08)]'
+          ? 'bg-[#2f3926] text-white shadow-[0_10px_22px_rgba(47,57,38,0.2)] hover:shadow-[0_14px_28px_rgba(47,57,38,0.24)] active:shadow-[0_5px_12px_rgba(47,57,38,0.18)]'
+          : 'border border-[#a9b28f] bg-[#fbf6ec] text-[#2f3926] shadow-[0_8px_18px_rgba(72,61,44,0.1)] hover:shadow-[0_12px_24px_rgba(72,61,44,0.14)] active:shadow-[0_4px_10px_rgba(72,61,44,0.1)]'
       }`}
     >
       {label}
